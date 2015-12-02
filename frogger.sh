@@ -321,7 +321,7 @@ echo -e "\e[01;32m[-]\e[00m Now Extracting VLAN IDs on interface $INT, sniffing 
 echo ""
 
 #VLANIDS=$(tshark -a duration:$TAGSEC -i $INT -R "vlan" -x -V 2>&1 |grep -o " = ID: .*" |awk '{ print $NF }' | sort --unique)
-VLANIDS=$(tshark -a duration:$TAGSEC -i $INT -R "vlan" -x -V |grep -o " = ID: .*" |awk '{ print $NF }' | sort --unique)
+VLANIDS=$(tshark -a duration:$TAGSEC -i $INT -Y "vlan" -x -V 2>&1|grep -o " = ID: .*" |awk '{ print $NF }' | sort --unique)
 
 if [ -z "$VLANIDS" ]
 	then
